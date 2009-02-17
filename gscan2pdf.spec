@@ -7,7 +7,7 @@ Release:	1
 License:	GPL
 Group:		Applications/Publishing
 Source0:	http://dl.sourceforge.net/gscan2pdf/%{name}-%{version}.tar.gz
-# Source0-md5:	957f4d5918892263bf71e4a82a8f656c
+# Source0-md5:	a3c8b674c66c74d945d5549a508a8344
 URL:		http://gscan2pdf.sourceforge.net/
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
@@ -18,9 +18,9 @@ Requires:	ImageMagick-perl
 Requires:	djvulibre
 Requires:	gocr
 Requires:	sane-backends >= 1.0.17
-Requires:	sane-frontends
-Requires:	unpaper
-Requires:	xdg-utils
+Requires:	xsane
+Suggests:	unpaper
+Suggests:	xdg-utils
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
