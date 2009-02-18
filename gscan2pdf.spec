@@ -16,9 +16,9 @@ BuildRequires:	rpm-perlprov >= 4.1-13
 Requires:	ImageMagick
 Requires:	ImageMagick-perl
 Requires:	djvulibre
-Requires:	gocr
-Requires:	sane-backends >= 1.0.17
-Requires:	xsane
+Suggests:	gocr
+Suggests:	sane-backends >= 1.0.17
+Suggests:	sane-frontentds
 Suggests:	unpaper
 Suggests:	xdg-utils
 BuildArch:	noarch
