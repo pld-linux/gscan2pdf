@@ -1,0 +1,12 @@
+diff -dur -x '*~' gscan2pdf-0.9.27.orig/bin/gscan2pdf gscan2pdf-0.9.27/bin/gscan2pdf
+--- gscan2pdf-0.9.27.orig/bin/gscan2pdf	2009-02-18 12:17:21.000000000 +0100
++++ gscan2pdf-0.9.27/bin/gscan2pdf	2009-02-18 12:18:43.000000000 +0100
+@@ -7245,7 +7245,7 @@
+   pol     => $d->get('Polish'),
+  );
+ 
+- my $tessdata_prefix = '/usr/share/tessdata';
++ my $tessdata_prefix = '/usr/share';
+  if (defined $ENV{TESSDATA_PREFIX}) {
+   $tessdata_prefix = $ENV{TESSDATA_PREFIX};
+  }

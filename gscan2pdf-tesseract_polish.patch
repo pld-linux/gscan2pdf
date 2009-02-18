@@ -1,0 +1,11 @@
+diff -dur -x '*~' gscan2pdf-0.9.27.orig/bin/gscan2pdf gscan2pdf-0.9.27/bin/gscan2pdf
+--- gscan2pdf-0.9.27.orig/bin/gscan2pdf	2008-12-12 22:47:42.000000000 +0100
++++ gscan2pdf-0.9.27/bin/gscan2pdf	2009-02-18 11:05:14.000000000 +0100
+@@ -7242,6 +7242,7 @@
+   por     => $d->get('Portuguese'),
+   spa     => $d->get('Spanish'),
+   vie     => $d->get('Vietnamese'),
++  pol     => $d->get('Polish'),
+  );
+ 
+  my $tessdata_prefix = '/usr/share/tessdata';

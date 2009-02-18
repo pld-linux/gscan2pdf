@@ -8,6 +8,8 @@ License:	GPL
 Group:		Applications/Publishing
 Source0:	http://dl.sourceforge.net/gscan2pdf/%{name}-%{version}.tar.gz
 # Source0-md5:	a3c8b674c66c74d945d5549a508a8344
+Patch0:		%{name}-tesseract_polish.patch
+Patch1:		%{name}-tessdata_prefix.patch
 URL:		http://gscan2pdf.sourceforge.net/
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
@@ -19,6 +21,7 @@ Requires:	djvulibre
 Suggests:	gocr
 Suggests:	sane-backends >= 1.0.17
 Suggests:	sane-frontentds
+Suggests:	tesseract
 Suggests:	unpaper
 Suggests:	xdg-utils
 BuildArch:	noarch
@@ -39,6 +42,8 @@ The resulting document may be saved as a PDF or a multipage TIFF file.
 
 %prep
 %setup -q
+%patch0 -p1
+%patch1 -p1
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
