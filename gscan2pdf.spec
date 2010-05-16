@@ -12,7 +12,7 @@ Patch0:		%{name}-tesseract_polish.patch
 Patch1:		%{name}-tessdata_prefix.patch
 URL:		http://gscan2pdf.sourceforge.net/
 BuildRequires:	desktop-file-utils
-BuildRequires:	gettext
+BuildRequires:	gettext-devel
 BuildRequires:	perl-devel
 BuildRequires:	rpm-perlprov >= 4.1-13
 Requires:	ImageMagick
