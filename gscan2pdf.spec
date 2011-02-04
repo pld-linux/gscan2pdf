@@ -3,10 +3,10 @@
 Summary:	A GUI to produce PDFs from scanned documents
 Name:		gscan2pdf
 Version:	0.9.29
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Publishing
-Source0:	http://dl.sourceforge.net/gscan2pdf/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/gscan2pdf/%{name}-%{version}.tar.gz
 # Source0-md5:	f660b73ec8a1cb7185c4de4005900496
 Patch0:		%{name}-tesseract_polish.patch
 Patch1:		%{name}-tessdata_prefix.patch
@@ -15,6 +15,8 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	gettext-devel
 BuildRequires:	perl-devel
 BuildRequires:	rpm-perlprov >= 4.1-13
+Requires(post,postun):	gtk-update-icon-cache
+Requires(post,postun):	hicolor-icon-theme
 Requires:	ImageMagick
 Requires:	ImageMagick-perl
 Requires:	djvulibre
@@ -72,17 +74,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 update-desktop-database &> /dev/null ||:
-touch --no-create %{_datadir}/icons/hicolor || :
-if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-  %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-fi
+%update_icon_cache
 
 %postun
 update-desktop-database &> /dev/null ||:
-touch --no-create %{_datadir}/icons/hicolor || :
-if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-  %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-fi
+%update_icon_cache
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
