@@ -5,14 +5,13 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	A GUI to produce PDFs from scanned documents
 Name:		gscan2pdf
-Version:	0.9.29
-Release:	2
+Version:	0.9.31
+Release:	1
 License:	GPL
 Group:		Applications/Publishing
 Source0:	http://downloads.sourceforge.net/gscan2pdf/%{name}-%{version}.tar.gz
-# Source0-md5:	f660b73ec8a1cb7185c4de4005900496
+# Source0-md5:	e92ee7b07ffd3543faf8a64940ad65dc
 Patch0:		%{name}-tesseract_polish.patch
-Patch1:		%{name}-tessdata_prefix.patch
 URL:		http://gscan2pdf.sourceforge.net/
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext-devel
@@ -49,7 +48,6 @@ The resulting document may be saved as a PDF or a multipage TIFF file.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
@@ -59,12 +57,17 @@ The resulting document may be saved as a PDF or a multipage TIFF file.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -type f -name .packlist -exec rm -f {} ';'
 find $RPM_BUILD_ROOT -depth -type d -exec rmdir {} 2>/dev/null ';'
-rm -f $RPM_BUILD_ROOT%{perl_archlib}/perllocal.pod
+%{__rm} $RPM_BUILD_ROOT%{perl_archlib}/perllocal.pod
 chmod -R u+w $RPM_BUILD_ROOT/*
+
+install -d $RPM_BUILD_ROOT%{_iconsdir}/hicolor/scalable
+mv $RPM_BUILD_ROOT%{_datadir}/pixmaps/gscan2pdf.svg \
+   $RPM_BUILD_ROOT%{_iconsdir}/hicolor/scalable
 
 desktop-file-install --delete-original  --vendor="" \
   --dir=$RPM_BUILD_ROOT%{_desktopdir}         \
@@ -77,17 +80,20 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 update-desktop-database &> /dev/null ||:
-%update_icon_cache
+%update_icon_cache hicolor
 
 %postun
 update-desktop-database &> /dev/null ||:
-%update_icon_cache
+%update_icon_cache hicolor
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc LICENCE
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/gscan2pdf
+%attr(755,root,root) %{_bindir}/scanadf-perl
+%attr(755,root,root) %{_bindir}/scanimage-perl
 %{perl_vendorlib}/Gscan2pdf.pm
 %{_datadir}/%{name}
 %{_desktopdir}/%{name}.desktop
 %{_mandir}/man1/*.1*
+%{_iconsdir}/hicolor/scalable/gscan2pdf.svg
