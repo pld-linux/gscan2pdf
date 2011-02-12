@@ -1,4 +1,7 @@
 #
+# Conditional build:
+%bcond_without	tests	# do not perform "make test"
+#
 %include	/usr/lib/rpm/macros.perl
 Summary:	A GUI to produce PDFs from scanned documents
 Name:		gscan2pdf
@@ -13,6 +16,7 @@ Patch1:		%{name}-tessdata_prefix.patch
 URL:		http://gscan2pdf.sourceforge.net/
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext-devel
+%{?with_tests:BuildRequires:	perl-Test-Pod}
 BuildRequires:	perl-devel
 BuildRequires:	rpm-perlprov >= 4.1-13
 Requires(post,postun):	gtk-update-icon-cache
@@ -51,6 +55,8 @@ The resulting document may be saved as a PDF or a multipage TIFF file.
 %{__perl} Makefile.PL INSTALLDIRS=vendor
 %{__make}
 
+%{?with_tests:%{__make} test}
+
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
@@ -65,9 +71,6 @@ desktop-file-install --delete-original  --vendor="" \
   $RPM_BUILD_ROOT%{_desktopdir}/%{name}.desktop
 
 %find_lang %{name}
-
-%check
-make test
 
 %clean
 rm -rf $RPM_BUILD_ROOT
