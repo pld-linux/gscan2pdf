@@ -5,12 +5,12 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	A GUI to produce PDFs from scanned documents
 Name:		gscan2pdf
-Version:	0.9.31
+Version:	0.9.32
 Release:	1
 License:	GPL
 Group:		Applications/Publishing
 Source0:	http://downloads.sourceforge.net/gscan2pdf/%{name}-%{version}.tar.gz
-# Source0-md5:	e92ee7b07ffd3543faf8a64940ad65dc
+# Source0-md5:	97cdc74bcca61b9494b87bb155118eda
 Patch0:		%{name}-tesseract_polish.patch
 URL:		http://gscan2pdf.sourceforge.net/
 BuildRequires:	desktop-file-utils
