@@ -14,7 +14,7 @@ Source0:	http://downloads.sourceforge.net/gscan2pdf/%{name}-%{version}.tar.gz
 Patch0:		%{name}-tesseract_polish.patch
 URL:		http://gscan2pdf.sourceforge.net/
 BuildRequires:	desktop-file-utils
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 %{?with_tests:BuildRequires:	perl-Test-Pod}
 BuildRequires:	perl-devel
 BuildRequires:	rpm-perlprov >= 4.1-13
