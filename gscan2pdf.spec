@@ -46,7 +46,7 @@ The resulting document may be saved as a PDF or a multipage TIFF file.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
